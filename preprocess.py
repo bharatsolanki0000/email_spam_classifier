@@ -1,11 +1,7 @@
-import nltk
+import re
 import string
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
-
-# download required resources (first time only)
-nltk.download('punkt')
-nltk.download('stopwords')
 
 # initialize
 ps = PorterStemmer()
@@ -19,17 +15,8 @@ def preprocess(row):
     # lowercase
     row = row.lower()
 
-    # tokenize
-    row = nltk.word_tokenize(row)
-
-    # remove special characters
-    y = []
-    for i in row:
-        if i.isalnum():
-            y.append(i)
-
-    row = y[:]
-    y.clear()
+    # tokenize using a simple regex (avoids NLTK tokenizer dependencies)
+    row = re.findall(r"\b\w+\b", row)
 
     # remove stopwords + punctuation + stemming
     y = [ps.stem(word) for word in row if word not in stopword_list and word not in punctuation]
