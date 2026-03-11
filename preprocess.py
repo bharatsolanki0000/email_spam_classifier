@@ -1,11 +1,18 @@
 import re
 import string
+import nltk
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
 
+# ensure NLTK data is available (needed for stopwords on fresh deployments)
+try:
+    stopword_list = set(stopwords.words("english"))
+except LookupError:
+    nltk.download("stopwords", quiet=True)
+    stopword_list = set(stopwords.words("english"))
+
 # initialize
 ps = PorterStemmer()
-stopword_list = stopwords.words('english')
 punctuation = string.punctuation
 
 
