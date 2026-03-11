@@ -1,5 +1,7 @@
 # Email Spam Classifier
 
+🌐 **Try it live:** https://emailspamclassifierbybharatsolanki.streamlit.app/
+
 🚀 **A fast, browser-based spam detector powered by scikit-learn and Streamlit.**
 
 This project classifies freeform email text as **Spam** or **Not Spam** using a pre-trained pipeline that includes text preprocessing, TF-IDF feature extraction, and a Random Forest classifier.
